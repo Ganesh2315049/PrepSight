@@ -18,7 +18,10 @@ export const registerUser = (payload) => api.post('/auth/register', payload);
 
 export const loginUser = (payload) => api.post('/auth/login', payload);
 
-export const getGoogleLoginUrl = () => `${BASE_URL.replace('/api', '')}oauth2/authorization/google`;
+export const getGoogleLoginUrl = () => {
+  const authBaseUrl = BASE_URL.replace(/\/api\/?$/, '');
+  return `${authBaseUrl}/oauth2/authorization/google`;
+};
 
 export const getExperiences = (company = '', sort = '') =>
   api.get('/experiences', { params: { company, sort } });
