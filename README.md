@@ -172,6 +172,44 @@ java -jar target/prepsight-backend-0.0.1-SNAPSHOT.jar
 
 This path is already verified in this project.
 
+## Production Deployment
+
+### Render (Backend)
+1. Deploy backend to https://prepsight.onrender.com
+2. Set Environment Variables in Render dashboard:
+   ```
+   FRONTEND_URL=https://prep-sight.vercel.app
+   DB_URL=postgresql://...
+   DB_USERNAME=...
+   DB_PASSWORD=...
+   JWT_SECRET=...
+   ADMIN_USERNAME=...
+   ADMIN_EMAIL=...
+   ADMIN_PASSWORD=...
+   GOOGLE_CLIENT_ID=...
+   GOOGLE_CLIENT_SECRET=...
+   ```
+3. Ensure `server.port=$PORT` (Render auto-sets PORT)
+
+### Vercel (Frontend)
+1. Deploy frontend to https://prep-sight.vercel.app
+2. Set Environment Variable:
+   ```
+   REACT_APP_API_URL=https://prepsight.onrender.com/api
+   ```
+
+### Google OAuth Console Setup
+1. Go to https://console.cloud.google.com/apis/credentials
+2. Edit your OAuth 2.0 Client ID:
+   - **Authorized JavaScript origins**: `https://prep-sight.vercel.app`
+   - **Authorized redirect URIs**: `https://prepsight.onrender.com/login/oauth2/code/google`
+3. Save changes (may take 5-10 mins to propagate)
+
+### Troubleshooting CORS/OAuth
+- CORS errors: Verify FRONTEND_URL matches exact Vercel domain in Render env vars
+- OAuth redirect mismatch: Check Google console URIs match exactly
+- Dashboard data fail: Ensure JWT token sent in Authorization header
+
 ## Security Note
 
 If any real credentials were previously committed to git history, rotate them (DB password, JWT secret, OAuth client secret) before production use.

@@ -96,6 +96,7 @@ public class SecurityConfig {
         if (frontendUrl.contains("localhost")) {
             allowedOrigins.add(frontendUrl.replace("localhost", "127.0.0.1"));
         }
+        allowedOrigins.add("https://prep-sight.vercel.app");
 
         configuration.setAllowedOrigins(allowedOrigins);
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
