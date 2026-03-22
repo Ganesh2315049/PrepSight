@@ -1,0 +1,43 @@
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Maven
+backend/target/
+backend/mvnw
+backend/mvnw.cmd
+!backend/pom.xml
+!backend/src/
+
+# Node (Frontend)
+frontend/node_modules/
+frontend/build/
+frontend/.env
+frontend/dist/
+
+# Environment
+.env
+*.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Misc
+README.md
+smoke-test.ps1
+.DS_Store
