@@ -21,7 +21,7 @@ RUN addgroup -g 1001 -S appgroup && \
 WORKDIR /app
 
 # Copy the built JAR from builder stage
-COPY --from=builder /app/backend/target/*.jar app.jar
+COPY --from=builder /app/target/prepsight-backend-0.0.1-SNAPSHOT.jar app.jar
 
 # Change ownership to non-root user
 RUN chown appuser:appgroup /app/app.jar
@@ -30,11 +30,7 @@ RUN chown appuser:appgroup /app/app.jar
 USER appuser
 
 # Expose port (Render uses $PORT env var)
-EXPOSE $PORT
-
-# Healthcheck using Spring Boot Actuator (enabled by default)
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider http://localhost:$PORT/actuator/health || exit 1
+EXPOSE 8080
 
 # Run the application
-ENTRYPOINT ["sh", "-c", "java -jar /app/app.jar"]
+ENTRYPOINT ["sh", "-c", "java -jar /app/app.jar --server.port=${PORT:-8080}"]

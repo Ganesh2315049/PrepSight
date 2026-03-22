@@ -32,7 +32,7 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
-    @Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 1")
+    @Column(nullable = false)
     private boolean active = true;
 
     public Long getId() {

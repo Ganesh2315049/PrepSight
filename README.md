@@ -8,6 +8,7 @@ It provides authentication, experience CRUD, analytics dashboards, and admin use
 The project was checked on this workspace with the following results:
 
 - Backend build: success (`mvn clean test`, `mvn clean package`)
+- Backend tests: success (`mvn test`) with 2 tests (`contextLoads`, `AuthControllerTest#loginReturnsTokenResponse`)
 - Backend runtime: success (`java -jar target/prepsight-backend-0.0.1-SNAPSHOT.jar`, listening on `8080`)
 - Frontend install: success (`npm install`)
 - Frontend build: success (`npm run build`)
@@ -22,7 +23,7 @@ The project was checked on this workspace with the following results:
 - Spring Security + JWT
 - OAuth2 (Google login)
 - Spring Data JPA
-- MySQL
+- PostgreSQL
 - Maven
 
 ### Frontend
@@ -69,7 +70,7 @@ Install these before running:
 - Java JDK 17
 - Maven 3.9+
 - Node.js 18+ and npm
-- MySQL 8+
+- PostgreSQL 14+
 
 ## Environment Variables
 
@@ -96,7 +97,19 @@ Frontend `.env` (`frontend/.env`):
 
 ## How To Run
 
-### 1. Start Backend
+### Docker (Recommended for Production/Testing)
+
+See `TODO.md` for Docker build fix and testing steps:
+
+1. Install Docker Desktop: https://www.docker.com/products/docker-desktop/
+2. Build: `docker build -t prepsight .`
+3. Run: `docker run -p 8080:8080 prepsight`
+
+Backend URL: `http://localhost:8080`
+
+### Local Development
+
+#### 1. Start Backend
 
 ```bash
 cd backend
