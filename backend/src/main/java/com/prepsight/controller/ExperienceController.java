@@ -3,7 +3,6 @@ package com.prepsight.controller;
 import com.prepsight.model.Experience;
 import com.prepsight.service.ExperienceService;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +18,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/experiences")
-@CrossOrigin(origins = "http://localhost:3000")
 public class ExperienceController {
 
     private final ExperienceService experienceService;
